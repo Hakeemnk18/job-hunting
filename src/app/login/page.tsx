@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+
 export default function LoginPage() {
     const router = useRouter();
     const [email, setEmail] = useState('');
@@ -87,8 +88,11 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="flex items-center justify-center h-screen bg-gray-100">
-            <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md w-full max-w-sm">
+        
+
+        
+        <div className="bg-[url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] bg-cover flex items-center justify-center h-screen  ">
+            <form onSubmit={handleLogin} className="bg-white p-8 rounded-2xl shadow-md w-full max-w-sm">
                 <h2 className="text-2xl mb-4 font-bold">{loginStatus}</h2>
                 
                 {loginStatus === 'SignUp'
@@ -99,7 +103,7 @@ export default function LoginPage() {
                         placeholder="full name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full border p-2 mb-4"
+                        className="w-full border p-2 mb-6 rounded-[10px] border-gray-400"
                         required
                     />
                     { error.nameError && <span className='text-red-400'>Name is required</span>}
@@ -114,7 +118,7 @@ export default function LoginPage() {
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full border p-2 mb-4"
+                        className="w-full border p-2 mb-6 rounded-[10px] border-gray-400"
                         
                     />
                     { error.emailError && <span className='text-red-400'>Email is required</span>}
@@ -126,7 +130,7 @@ export default function LoginPage() {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full border p-2 mb-4"
+                    className="w-full border p-2 mb-6 rounded-[10px] border-gray-400"
                     
                 />
                 { error.passwordError && <span className='text-red-400'>Password is required</span>}
@@ -135,11 +139,11 @@ export default function LoginPage() {
                 
                 {
                     loginStatus === 'SignUp'
-                    ?  <button type="submit" className="bg-blue-600 text-white px-4 py-2 w-full rounded">
+                    ?  <button type="submit" className="bg-blue-600 text-white px-4 py-2 w-full rounded-[10px]">
                           Sign up
                        </button>
                     :
-                    <button type="submit" className="bg-blue-600 text-white px-4 py-2 w-full rounded">
+                    <button type="submit" className="bg-blue-600 text-white px-4 py-2 w-full rounded-[10px]">
                        Login
                     </button>
                 }
@@ -156,5 +160,6 @@ export default function LoginPage() {
                 
             </form>
         </div>
+        
     );
 }
