@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 
 export default function LoginPage() {
@@ -52,40 +53,29 @@ export default function LoginPage() {
         
         setError(errorObj)
 
-        const res = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-            router.push('/dashboard'); // Redirect on success
-        } else {
-            setError(data.message || 'Login failed');
-        }
-    }
-
-    //handle sign in 
-    async function handleSignIn(e: React.FormEvent) {
-        e.preventDefault();
+        
         
 
-        const res = await fetch('/api/auth/login', {
+        const uri = loginStatus === 'SignUp' ? '/api/auth/signup' : '/api/auth/login';
+        console.log("uri "+uri)
+        const res = await fetch(uri, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password, name }),
         });
 
         const data = await res.json();
+        
 
         if (res.ok) {
             router.push('/dashboard'); // Redirect on success
         } else {
-            setError(data.message || 'Login failed');
+            console.log(data.message || 'Login failed');
+            toast.error(data.message || 'Login failed')
         }
     }
+
+    
 
     return (
         
@@ -152,7 +142,7 @@ export default function LoginPage() {
                     loginStatus === 'SignUp' 
                     ? <button
                         onClick={()=> setLoginStatus('Login')}
-                    >already have an account ? <a className='text-blue-400'>login</a></button>
+                    >already have an account ? <a className='text-blue-400' >login</a></button>
                     : <button
                     onClick={()=> setLoginStatus('SignUp')}
                     >new user ? <a className='text-blue-400'>sign up</a></button>
