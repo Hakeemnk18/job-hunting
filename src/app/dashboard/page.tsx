@@ -1,3 +1,11 @@
+import Navbar from "@/components/navbar"
+import UserTable from "@/components/table"
+
 export default function Dashboard(){
-    return <h1>Dash board</h1>
+    return (
+        <>
+            <Navbar />
+            <UserTable />
+        </>
+    )
 }
