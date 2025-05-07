@@ -2,6 +2,7 @@
 
 import { useState, useEffect} from 'react';
 import { FaTrash, FaPen } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 type User = {
   id: number;
@@ -20,6 +21,25 @@ const PAGE_SIZE = 5;
 export default function UserTable() {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
+
+  async function getCompanies(){
+      const res = await fetch('/api/companies')
+      const data = await res.json()
+      if(res.ok){
+        
+        console.log("fetch completed")
+        console.log(data)
+      }else{
+        console.log("fetch incomplete")
+        toast.error(data.message || 'server failed failed')
+      }
+
+      
+  }
+
+  useEffect( ()=>{
+    getCompanies()
+  })
 
   const filtered = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase())
