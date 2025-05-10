@@ -66,9 +66,7 @@ export default function UserTable() {
         <div className="flex space-x-2">
           <button className="bg-blue-100 px-4 py-2 rounded text-sm"> Filter</button>
           
-          <button 
-            onClick={()=> setAddCompanyModal(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded text-sm">+ Add Company</button>
+          <button className="bg-blue-600 text-white px-4 py-2 rounded text-sm">+ Add Company</button>
         </div>
       </div>
 
