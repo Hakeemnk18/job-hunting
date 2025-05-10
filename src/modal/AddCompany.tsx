@@ -7,9 +7,10 @@ import { toast } from 'react-toastify';
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  setCompanyAdded: () => void;
 }
 
-const AddCompanyModal = ({ isOpen, onClose }: Props) => {
+const AddCompanyModal = ({ isOpen, onClose, setCompanyAdded }: Props) => {
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [logo, setLogo] = useState<File | null>(null);
@@ -97,6 +98,7 @@ const AddCompanyModal = ({ isOpen, onClose }: Props) => {
     if (res.ok) {
       toast.success(data.message)
       onClose();
+      setCompanyAdded()
       setName('');
       setType('');
       setLogo(null);

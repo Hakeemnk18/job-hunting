@@ -128,9 +128,11 @@ export default function UserTable() {
           </button>
         ))}
       </div>
-      {
-        addCompanyModal && <AddCompanyModal onClose={()=>setAddCompanyModal(!addCompanyModal)} isOpen={addCompanyModal}/>
-      }
+      {/* {
+        addCompanyModal && <AddCompanyModal 
+        onClose={()=>setAddCompanyModal(!addCompanyModal)} 
+        isOpen={addCompanyModal}/>
+      } */}
       
     </div>
 
